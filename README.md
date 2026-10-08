@@ -60,8 +60,8 @@ figures and heart drawn in the line style of the brand pictograms.
 
 ## Rendering
 
-`python3 render.py` renders every format into `renders/` with headless
-Chrome (fonts load from Google Fonts, so it needs network access):
+`make` (or `python3 render.py`) renders every format into `renders/` with
+headless Chrome (fonts load from Google Fonts, so it needs network access):
 
 | Format  | Size       | File                                      |
 |---------|------------|-------------------------------------------|
@@ -69,6 +69,8 @@ Chrome (fonts load from Google Fonts, so it needs network access):
 | `1080p` | 1920×1080  | `xmas-card-2027-wallpaper-1920x1080.png`  |
 | `4k`    | 3840×2160  | `xmas-card-2027-wallpaper-3840x2160.png`  |
 
-Pass format names to render only those, e.g. `python3 render.py card 4k`.
+Render a single format with `make card`, `make 1080p` or `make 4k` (or
+`python3 render.py card 4k`). `renders/` is not committed; the PNGs are
+published as GitHub release assets with `make release TAG=v1.0.0`.
 The wallpapers scale the card to the full height and fill the sides with
 the brand blue.
