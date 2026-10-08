@@ -60,17 +60,29 @@ figures and heart drawn in the line style of the brand pictograms.
 
 ## Rendering
 
-`make` (or `python3 render.py`) renders every format into `renders/` with
-headless Chrome (fonts load from Google Fonts, so it needs network access):
+`make` renders every format into `renders/` with headless Chrome (fonts load
+from Google Fonts, so it needs network access; the PDF also needs
+Ghostscript):
 
-| Format  | Size       | File                                      |
+| Target  | Size       | File                                      |
 |---------|------------|-------------------------------------------|
 | `card`  | 2236×3176  | `xmas-card-2027.png` (the card at 4×)     |
 | `1080p` | 1920×1080  | `xmas-card-2027-wallpaper-1920x1080.png`  |
 | `4k`    | 3840×2160  | `xmas-card-2027-wallpaper-3840x2160.png`  |
+| `pdf`   | A5         | `xmas-card-2027-print-A5.pdf`             |
 
-Render a single format with `make card`, `make 1080p` or `make 4k` (or
-`python3 render.py card 4k`). `renders/` is not committed; the PNGs are
-published as GitHub release assets with `make release TAG=v1.0.0`.
-The wallpapers scale the card to the full height and fill the sides with
-the brand blue.
+Render a single format with `make card`, `make 1080p`, `make 4k` or
+`make pdf`. `renders/` is not committed; the files are published as GitHub
+release assets with `make release TAG=v1.0.0`. The wallpapers scale the card
+to the full height and fill the sides with the brand blue.
+
+### Print PDF
+
+`make pdf` produces the file for the printer: A5 (148×210 mm, the card's
+exact size), in the same RGB colours as the design.
+
+- Text and shapes stay vector; text is converted to outlines, so no fonts
+  need to be embedded or installed.
+- The only raster elements are the blurred glows, which Chrome rasterises at
+  300 ppi, and the logo, placed at about 1300 ppi.
+- The file has no bleed or crop marks.
