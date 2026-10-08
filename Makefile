@@ -79,7 +79,8 @@ $(PDF): $(SOURCES)
 	TMPDIR="$$tmp" gs -q -o $@ -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dCompatibilityLevel=1.6 \
 	    -sColorConversionStrategy=RGB -dNoOutputFonts -dAutoRotatePages=/None \
 	    -dDownsampleColorImages=false -dDownsampleGrayImages=false -dDownsampleMonoImages=false \
-	    -dAutoFilterColorImages=false -dColorImageFilter=/FlateEncode "$$tmp/chrome.pdf"
+	    -dAutoFilterColorImages=false -dColorImageFilter=/FlateEncode \
+	    -dAutoFilterGrayImages=false -dGrayImageFilter=/FlateEncode "$$tmp/chrome.pdf"
 	echo "pdf    A5         $@"
 
 release: $(RENDERS)
